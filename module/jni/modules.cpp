@@ -47,7 +47,7 @@ static bool shouldUnmount(const mountinfo_entry &mount, const mountinfo_root_res
         return true;
 
     // Unmount all module overlayfs and tmpfs
-    if ((type == "overlay" || type == "tmpfs") && fsname_list.contains(mount.getMountSource()))
+    if ((type == "overlay" || type == "tmpfs" || type == "devpts") && fsname_list.contains(mount.getMountSource()))
         return true;
 
     // Unmount all overlayfs with lowerdir/upperdir/workdir starting with /data/adb
