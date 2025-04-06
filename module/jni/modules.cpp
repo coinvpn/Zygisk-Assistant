@@ -46,6 +46,15 @@ static bool shouldUnmount(const mountinfo_entry &mount, const mountinfo_root_res
     if (mount_point.starts_with("/data/adb"))
         return true;
 
+    // Mount is from /vendor/etc
+    if (true_root.starts_with("/vendor/etc"))
+        return true;
+
+    // Mount is to /vendor/etc
+    if (mount_point.starts_with("/vendor/etc"))
+        return true;
+
+    
     // Unmount all module overlayfs and tmpfs
     if ((type == "overlay" || type == "tmpfs" || type == "devpts") && fsname_list.contains(mount.getMountSource()))
         return true;
